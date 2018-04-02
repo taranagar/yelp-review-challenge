@@ -5,13 +5,13 @@ import json
 from textblob import TextBlob
 
 # review file
-infile = 'data_sample/review_sample.csv'
-reviews = json.load(open('data_sample/review_sample.json'))
+reviews = json.load(open('../data_sample/review_sample.json'))
 
 # rating categories & their respective dictionary files to be read in as words
 # food, ambiance, price, service
 categories = ['Food', 'Ambiance', 'Price', 'Service']
-files = ['dict/food.csv', 'dict/ambiance.csv', 'dict/price.csv', 'dict/service.csv']
+files = ['../dict/food.csv', '../dict/ambiance.csv',
+'../dict/price.csv', '../dict/service.csv']
 words = []
 
 # read dictionary CSV files into words for each rating category
