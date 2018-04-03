@@ -2,7 +2,9 @@
 
 import csv
 import json
+import re
 from textblob import TextBlob
+
 
 # review file
 reviews = json.load(open('../data_sample/review_sample.json'))
@@ -45,8 +47,8 @@ for i, entry in enumerate(reviews):
 		# loop through each sentence in review
 		for sentence in review_tb.sentences:
 			# do a sentiment analysis of the sentence if it contains word(s) in our target category
-			if list(set(sentence.split(" ")) & set(w)):
-				temp_words.append(list(set(sentence.split(" ")) & set(w)))
+			if list(set(re.split('\W+',str(sentence))) & set(w)):
+				temp_words.append(list(set(re.split('\W+',str(sentence))) & set(w)))
 				temp_sent.append(sentence.polarity)
 		temp_words = list(set([item for sublist in temp_words for item in sublist]))
 
@@ -58,6 +60,7 @@ for i, entry in enumerate(reviews):
 	# loop though sentiments of all categories
 	for i, sent in enumerate(sents):
 		# print out sentiment value of each category
+		# if sent: print categories[i],"Sentiment:",sent
 		if sent: print categories[i],"Sentiment:",round(sum(sent)/len(sent),2)
 		else: print categories[i],"Sentiment: N/A"
 	print
