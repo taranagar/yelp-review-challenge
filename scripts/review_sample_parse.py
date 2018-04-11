@@ -7,7 +7,7 @@ data = []
 # open review.json file to read from
 with open('../../yelp-data/review.json', 'r') as rf:
     # read in first 100 lines
-    for i in range(100):
+    for i in range(500):
         line = rf.next().strip()
         data.append(json.loads(line))
 rf.close()
