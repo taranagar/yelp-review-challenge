@@ -9,7 +9,7 @@ from textblob.sentiments import NaiveBayesAnalyzer
 tb = Blobber()
 
 # review file
-reviews = json.load(open('../data_sample/review_sample.json'))
+reviews = json.load(open('../data_sample/review_jackspub.json'))
 
 # rating categories & their respective dictionary files to be read in as words
 # food, ambiance, price, service
@@ -34,11 +34,11 @@ with open('../dict/food.csv', 'r') as csvfile:
 		CC.append([row[0] for row in rows])
 
 # look through each entry in reviews JSON
-for i, entry in enumerate(reviews[:5]):
+for i, entry in enumerate(reviews):
 	# review_str - string version of review entry
 	# review_tb - textblob version of review entry
 	review_str = entry["text"].encode('ascii', 'ignore')
-	review_tb = tb(review_str)
+	review_tb = tb(review_str).correct()
 
 	# print entry #, rating, and review
 	print "#:", (i+1)
@@ -83,8 +83,10 @@ for i, entry in enumerate(reviews[:5]):
 	# loop through each category
 	for j, w in enumerate(dictionaries):
 		# add list of all sentiment values for each sentence that contains words in that category
-		temp_sent = [sent for k,sent in enumerate(sentiments) if set(words[k]) & set(dictionaries[j])]
+		temp_sent = [sent for k,sent in enumerate(sentiments) if set(words[k]) & set(dictionaries[j]) ]
 		# return average value of sentence sentiments if sentiment values exist
+		temp_sent = filter(lambda a: a != 0.0, temp_sent)
+		print "filtered sentiments", temp_sent
 		if temp_sent:
 			my_sentiments.append(round(sum(temp_sent)/len(temp_sent),2))
 		# if not applicable, return N/A indicating there were no sentences containing words of category, therefore nothing to analyze.
@@ -94,5 +96,17 @@ for i, entry in enumerate(reviews[:5]):
 	# loop though sentiments of all categories
 	for l, sent in enumerate(my_sentiments):
 		# print out sentiment value of each category
-		print categories[l],"Sentiment:",my_sentiments[l]
+		print categories[l],"Sentiment Value:",my_sentiments[l]
+		if my_sentiments[l] == 'N/A':
+			print categories[l],"Sentiment Star: N/A"
+		elif my_sentiments[l] >0.6:
+			print categories[l],"Sentiment Star: 5"
+		elif my_sentiments[l] >0.2:
+			print categories[l],"Sentiment Star: 4"
+		elif my_sentiments[l] >-0.2:
+			print categories[l],"Sentiment Star: 3"
+		elif my_sentiments[l] >-0.6:
+			print categories[l],"Sentiment Star: 2"
+		else:
+			print categories[l],"Sentiment Star: 1"
 	print
