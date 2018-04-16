@@ -1,59 +1,57 @@
 #!/usr/bin/python
 
+#import packages
 import csv
 import json
 import re
 from textblob import TextBlob
 from textblob import Blobber
 from textblob.sentiments import NaiveBayesAnalyzer
-tb = Blobber(analyzer=NaiveBayesAnalyzer())
+tb = Blobber()
 
-# review file
-reviews = json.load(open('../data_sample/review_sample.json'))
-
-# rating categories & their respective dictionary files to be read in as words
-# food, ambiance, price, service
-categories = ['Food', 'Ambiance', 'Price', 'Service']
-files = ['../dict/food.csv', '../dict/ambiance.csv',
-'../dict/price.csv', '../dict/service.csv']
+# global variables
+reviews = []
 dictionaries = []
+categories = ['Food', 'Ambiance', 'Price', 'Service']
+
+##### LOADING IN FILES #####
+
+# load json review file in
+def load_review_file(review_file):
+	reviews = json.load(open(review_file))
+	return reviews
 
 # read dictionary CSV files into words for each rating category
-for i, file in enumerate(files):
-	# open dictionary file
-	with open(file, 'r') as csvfile:
-		rows = csv.reader(csvfile)
-		# add words in file to words list
-		dictionaries.append([row[0] for row in rows])
+def category_files_to_dictionaries(category_files):
+	for i, file in enumerate(category_files):
+		# open dictionary file
+		with open(file, 'r') as csvfile:
+			rows = csv.reader(csvfile)
+			# add words in file to words list
+			dictionaries.append([row[0] for row in rows])
+	return dictionaries
 
-# conjunction word file used to split sentences into clauses - NOT DONE YET
-CC = []
-with open('../dict/food.csv', 'r') as csvfile:
-		rows = csv.reader(csvfile)
-		# add words in file to words list
-		CC.append([row[0] for row in rows])
+##########
 
-# look through each entry in reviews JSON
-for i, entry in enumerate(reviews):
-	# review_str - string version of review entry
-	# review_tb - textblob version of review entry
-	review_str = entry["text"].encode('ascii', 'ignore')
-	review_tb = tb(review_str)
+##### SENTIMENT ANALYSIS HELPER FUNCTIONS #####
 
-	# print entry #, rating, and review
-	print "#:", (i+1)
-	print "Rating:", entry["stars"]
-	print "Review:", review_str[:500],"..."
-
-	# create list of sentiment values for each sentence
-	sentiments = [sentence.sentiment.p_pos for sentence in review_tb.sentences]
+# create list of sentiment values for each sentence
+def review_sentiments(review_str):
+	#print review_str[:100]
+	# review's overall sentiment value
+	print "Overall Sentiment:", tb(review_str).polarity
+	# review's sentiment values broken down by sentences
+	sentiments = [sentence.sentiment.polarity for sentence in tb(review_str).sentences]
 	print "Individual Sentiments:", sentiments
-	print "Overall Sentiment:", review_tb.sentiment
+	return sentiments
 
-	# create list of keywords in each sentence
-	words = [sentence.words.lower().lemmatize() for sentence in review_tb.sentences]
-	#print(words)
+# create list of words in each sentence
+def review_words(review_str):
+	words = [sentence.words.lower().lemmatize() for sentence in tb(review_str).sentences]
+	#print words
+	return words
 
+def categories_sentiments(dictionaries, sentiments, words):
 	# create my list of sentiment values specific to each category
 	my_sentiments = []
 	# loop through each category
@@ -72,3 +70,42 @@ for i, entry in enumerate(reviews):
 		# print out sentiment value of each category
 		print categories[l],"Sentiment:",my_sentiments[l]
 	print
+
+##########
+
+##### SENTIMENT ANALYSIS #####
+
+# sentiment analysis for all reviews
+def reviews_sentiments(reviews, dictionaries):
+	# look through each entry in reviews JSON
+	for i, entry in enumerate(reviews[:5]):
+		# review_str - string version of review entry
+		# review_tb - textblob version of review entry
+		review_str = entry["text"].encode('ascii', 'ignore')
+		review_tb = tb(review_str)
+
+		# print entry #, rating, and review
+		print "#:", (i+1)
+		print "Rating:", entry["stars"]
+		print "Review:", review_str[:500],"..."
+
+		# create list of sentiment values for each sentence
+		sentiments = review_sentiments(review_str)
+
+		# create list of words in each sentence
+		words = review_words(review_str)
+
+		categories_sentiments(dictionaries, sentiments, words)
+
+##########
+
+##### MAIN FUNCTION #####
+
+def main():
+	reviews = load_review_file('../data_sample/review_sample.json')
+	dictionaries = category_files_to_dictionaries(['../dict/food.csv', '../dict/ambiance.csv', '../dict/price.csv', '../dict/service.csv'])
+	reviews_sentiments(reviews, dictionaries)
+	#review_sentiments("Love the staff, love the meat, love the place. Prepare for a long line around lunch or dinner hours.")
+
+if __name__== "__main__":
+	main()
