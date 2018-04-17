@@ -1,8 +1,25 @@
 {% extends 'layout.html' %}
 
+{{count}} = 0
+
 {% block body %}
-  <div class="jumbotron text-center">
+  <div class="jumbotron jumbotron-fluid text-center">
     <h1>MYelp</h1>
     <p class="lead">Yelp that works for you.</p>
   </div>
+  <ul class="list-group list-group-flush">
+    {% for business in businesses %}
+      <a href="biz/{{business.business_id}}" class="list-group-item list-group-item-action align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{business.name}}</h5>
+          <small>{{business.stars}}/5</small>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
+          <p class="mb-1">{{business.address}}</p>
+          <small>{{business.review_count}} Reviews</small>
+        </div>
+      </a>
+    </br>
+    {% endfor %}
+  </ul>
 {% endblock %}

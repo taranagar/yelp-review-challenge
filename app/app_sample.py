@@ -1,9 +1,12 @@
 from flask import Flask, render_template
+from data import Businesses
 app = Flask(__name__)
+
+Businesses = Businesses()
 
 @app.route("/")
 def home_index():
-    return render_template('home.html')
+    return render_template('home.html', businesses = Businesses)
 
 @app.route("/livedemo")
 def livedemo_index():
@@ -15,17 +18,4 @@ def accuracy_index():
 
 @app.route('/biz/<biz_id>')
 def profile(biz_id):
-	return """
-
-
-	<!DOCTYPE html>
-<html>
-<body>
-
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
-<h2>Hello, """ + biz_id + """
-
-</body>
-</html>
-"""
+	return render_template('business.html', biz_id = biz_id, businesses = Businesses)
