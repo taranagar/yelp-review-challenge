@@ -18,4 +18,5 @@ def accuracy_index():
 
 @app.route('/biz/<biz_id>')
 def profile(biz_id):
-	return render_template('business.html', biz_id = biz_id, businesses = Businesses)
+    business = [s for i, s in enumerate(Businesses) if biz_id in s["business_id"]]
+    return render_template('business.html', business = business[0])
