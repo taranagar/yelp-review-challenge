@@ -30,7 +30,7 @@ with open('../../yelp-data/review.json', 'r') as rf:
         elif 'NoSj3hV8Rlz_gUsOL4_EjQ' in line:
             data5.append(json.loads(line))
         # McDonald's
-        elif 'EEePiBwchl-TIBVcTdE0RA' in line:
+        elif 'k1PkpDm5d5pYJI1K_3UYpw' in line:
             data6.append(json.loads(line))
 rf.close()
 
@@ -63,7 +63,7 @@ wf4.close()
 with open('../data_sample/review_jackspub.json', 'w') as wf5:
     json.dump(data5, wf5)
 wf5.close()
-# McDonald's
-with open('../data_sample/review_mcdonalds.json', 'w') as wf6:
+# Nathan's Famous
+with open('../data_sample/review_nathans.json', 'w') as wf6:
     json.dump(data6, wf6)
 wf6.close()

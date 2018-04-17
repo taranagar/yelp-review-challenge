@@ -693,8 +693,6 @@ bottle
 meal
 flavor
 culinary
-
-
 truffle
 cheeseburger
 pita
@@ -748,15 +746,10 @@ chorizo
 butterbean
 sauce
 quality
-<<<<<<< HEAD
-frozen
-portion
-donut
-=======
 flavors
 barbecue
 biscuit
-brussel sprouts
+brussel sprout
 ribs
 cornbread
 maple
@@ -770,4 +763,6 @@ steak
 brownie
 chef
 cook
->>>>>>> c0c82f2511a5ab008956c5d2860627fda2e01432
+frozen
+portion
+donut

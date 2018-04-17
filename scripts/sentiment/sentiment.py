@@ -84,7 +84,7 @@ def categories_sentiments(dictionaries, sentiments, words):
 		print "Sentiment (Stars):", sentiment_value_to_star(my_sentiments_ave[j], my_sentiments_std[j])
 	print
 
-# converts sentiment values from (-1, 1) scale to 5-star scale
+# converts [-1, 1] sentiment values to [1, 5] star scale
 def sentiment_value_to_star(value_mean, value_std):
 	# no mean
 	if value_mean == 'N/A':
@@ -134,7 +134,7 @@ def reviews_sentiments(reviews, dictionaries):
 ##### MAIN FUNCTION #####
 
 def main():
-	reviews = load_review_file('../data_sample/review_donuttyme.json')
+	reviews = load_review_file('../data_sample/review_nathans.json')
 	dictionaries = category_files_to_dictionaries(['../dict/food.csv', '../dict/ambiance.csv', '../dict/price.csv', '../dict/service.csv'])
 	reviews_sentiments(reviews, dictionaries)
 	#review_sentiments("Love the staff, love the meat, love the place. Prepare for a long line around lunch or dinner hours.")

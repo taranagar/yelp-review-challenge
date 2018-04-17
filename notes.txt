@@ -1,0 +1,63 @@
+Let's change the review sample dataset to 6 restaurants (in Durham):
+
+- It’s a Southern thing: Kitchen and Bar
+ID: rMr_QQWey2COrWy2IqPSzg
+URL: https://www.yelp.com/biz/its-a-southern-thing-kitchen-and-bar-durham)
+
+- Namu
+ID: tDZFsZvWywe55HITMR7l5w
+URL: https://www.yelp.com/biz/namu-durham
+
+- Mateo
+ID: 8-xpaRknY-pZi3ORLmVk0w
+URL: https://www.yelp.com/biz/mateo-durham)
+
+- Mothers and Sons Trattoria
+ID: -jUjQNuMM3tPVx2OpdzJ0Q
+URL: https://www.yelp.com/biz/mothers-and-sons-trattoria-durham
+
+- Bull City Burger and Brewery
+ID: CgXcFOy6Rm6cIqEZe86UQg
+URL: https://www.yelp.com/biz/bull-city-burger-and-brewery-durham
+
+- M Kokko
+ID: lrlr6KkwyNcK_cT5lQtQRA
+URL: https://www.yelp.com/biz/m-kokko-durham)
+
+JK NOTHING FROM Durham
+
+{"business_id": "PJ-VbAtIOso1dqd2frQqqg",
+"name": "Donut Tyme",
+"city": "Las Vegas",
+"stars": 4.5,
+"review_count": 76
+
+{"business_id": "Uy3_5nLo3sYkAuSX6mjdmg",
+"name": "Geebee's Bar & Grill",
+"city": "Las Vegas",
+"stars": 4.5,
+"review_count": 33
+
+{"business_id": "u29lf2yPd-qK5ThAS9FRQQ",
+"name": "Kinthai",
+"city": "Las Vegas",
+"stars": 4.5,
+"review_count": 61
+
+{"business_id": "KYEZATGRY5aD69ZR6VvyWQ",
+"name": "North Forty Saloon and BBQ",
+"city": "Las Vegas",
+"stars": 3.5,
+"review_count": 31
+
+{"business_id": "NoSj3hV8Rlz_gUsOL4_EjQ",
+"name": "Jack's Pub",
+"city": "Las Vegas",
+"stars": 2.5,
+"review_count": 21
+
+{"business_id": "EEePiBwchl-TIBVcTdE0RA",
+"name": "McDonald's",
+"city": "Las Vegas",
+"stars": 2.0,
+"review_count": 26
