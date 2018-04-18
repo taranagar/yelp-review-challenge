@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  <div class="jumbotron text-center">
+  <div class="container-full-bg jumbotron text-center">
     <hr />
       <h1 class="mb-1">{{business.name}}</h1>
       <h4 class="mb-1">{{business.address}}</h4>
@@ -10,8 +10,20 @@
     </div>
     <hr />
   </div>
-  <div class = "container">
+  <div class = "container list-group list-group-flush">
     <h5>Business JSON:</h5>
-    <small>{{business}}</small>
+    <div class="list-group-item list-group-item-action d-flex w-100 justify-content-between">
+      <small>{{business}}</small>
+    </div>
+  </div>
+  <br />
+  <div class = "container list-group list-group-flush">
+    <h5>First 3 Review JSONS:</h5>
+    <!--GET ALL REVIEWS WITH {{reviews}}-->
+    {% for review in reviews[:3] %}
+    <div class="list-group-item list-group-item-action d-flex w-100 justify-content-between">
+      <small>{{review}}</small>
+    </div>
+    {% endfor %}
   </div>
 {% endblock %}

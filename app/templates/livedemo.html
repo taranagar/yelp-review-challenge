@@ -1,3 +1,5 @@
+<!-- NEED TO DO BACKEND FOR THIS... amongst many others -->
+
 {% extends 'layout.html' %}
 
 {% block body %}
@@ -5,10 +7,15 @@
     <h1>Livedemo</h1>
     <p class="lead">yah</p>
   </div>
-  <div class="input-group" style="height:100px">
-    <textarea class="form-control" aria-label="With textarea" placeholder="Input your review here..."></textarea>
-    <div class="input-group-append">
-      <button class="btn btn-danger" type="button">Analyze</button>
+  <form>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Enter Custom Review</label>
+      <textarea class="form-control" id="input-review" rows="8" placeholder="This place is so cute and has the best burritos ever... 10/10 would recommend!"></textarea>
     </div>
-  </div>
+    <div class = "text-center">
+      <button type="submit" class="btn btn-lg btn-danger">
+        Analyze
+      </button>
+    </div>
+  </form>
 {% endblock %}
