@@ -9,6 +9,8 @@ from textblob import TextBlob
 from textblob import Blobber
 tb = Blobber()
 
+nltk.data.path.append('./nltk_data/')
+
 # global variables
 reviews = []
 dictionaries = []
