@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "postdeploy": "python -m textblob.download_corpora"
+  }
+}
