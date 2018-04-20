@@ -33,3 +33,6 @@ def restaurant_index(biz_id):
     category_ave = category_sentiments_ave(reviews)
     category_std = category_sentiments_std(reviews)
     return render_template('restaurant.html', business=business[0], reviews=reviews, overall_list=overall_list, overall_ave=overall_ave, overall_std=overall_std, category_list=category_list, category_ave=category_ave, category_std=category_std)
+
+if __name__ == "__main__":
+	app.run()
