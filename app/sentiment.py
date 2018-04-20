@@ -65,7 +65,7 @@ def category_sentiments_std(reviews):
 	for i, category in enumerate(categories):
 		category_std.append(round(np.std(np.array([cat[i] for cat in category_sentiments if cat[i] !='N/A']), dtype=np.float64),3))
 	return category_std
-
+##########
 
 ##### SENTIMENT ANALYSIS HELPER FUNCTIONS #####
 def categories_sentiments(dictionaries, sentiments, words):

@@ -2,13 +2,18 @@
 
 {% block body %}
   <!--background image source: https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0a9cacdd6a4e7e408b8ba89d3d6e91d3&auto=format&fit=crop&w=2550&q=80-->
-  <div class="jumbotron text-center" style="height: 93vh; margin-bottom: 0px; background:linear-gradient(0deg,rgba(0,0,0,0.4),rgba(0,0,0,0.2)),url(https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0a9cacdd6a4e7e408b8ba89d3d6e91d3&auto=format&fit=crop&w=2550&q=80); background-size: cover; color: white">
-    <h1>MYelp</h1>
-    <p class="lead">Yelp that works for you.</p>
-    <br />
-    <p>
-      <a class="btn btn-danger btn-lg" href="/restaurants" role="button">Restaurants</a>
-      <a class="btn btn-danger btn-lg" href="/customreview" role="button">Custom Review</a>
-    </p>
+  <div class="jumbotron text-center" style="display: flex; align-items: center; justify-content: center; height: 93vh; margin-bottom: 0px; background:linear-gradient(0deg,rgba(0,0,0,0.4),rgba(0,0,0,0.2)),url(https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0a9cacdd6a4e7e408b8ba89d3d6e91d3&auto=format&fit=crop&w=2550&q=80); background-size: cover; color: white">
+    <div class ="container">
+      <h1 class="display-2">MYelp</h1>
+      <p class="lead">Yelp that works for you.</p>
+      <br />
+      <br />
+      <p>
+        <a class="btn btn-danger btn-lg" href="/restaurants" role="button">Restaurants</a>
+        <a class="btn btn-danger btn-lg" href="/customreview" role="button">Custom Review</a>
+      </p>
+      <small><a style="color:LIGHTYELLOW;" href="https://unsplash.com/photos/hrlvr2ZlUNk">Photo</a> by Rachel Park</small>
+      <br />
+    </div>
   </div>
 {% endblock %}
