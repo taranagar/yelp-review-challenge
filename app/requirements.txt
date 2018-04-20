@@ -1,5 +1,7 @@
 Flask==0.12.2
 Flask-Bootstrap==3.3.7.1
 gunicorn==19.7.1
+itsdangerous==0.24
 Jinja2==2.8
+textblob==0.15.1
 Werkzeug==0.14.1
