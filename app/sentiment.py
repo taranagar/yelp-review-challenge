@@ -15,7 +15,7 @@ dictionaries = []
 categories = ['Food', 'Ambiance', 'Price', 'Service']
 
 ##### LOADING IN FILES #####
-for i, file in enumerate(['../dict/food.csv', '../dict/ambiance.csv', '../dict/price.csv', '../dict/service.csv']):
+for i, file in enumerate(['dict/food.csv', 'dict/ambiance.csv', 'dict/price.csv', 'dict/service.csv']):
 	with open(file, 'r') as csvfile:
 		rows = csv.reader(csvfile)
 		dictionaries.append([row[0] for row in rows])
