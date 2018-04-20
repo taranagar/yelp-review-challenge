@@ -8,11 +8,6 @@ backports.shutil-get-terminal-size==1.0.0
 backports.ssl-match-hostname==3.5.0.1
 beautifulsoup4==4.4.1
 boto==2.40.0
-Canopy==1.7.4.3348
-canopy-dashboard==0.7.19
-canopy-packman-plugin==0.1.19
-canopy-platform==0.9.12
-CanopyDebugger==0.1.2.dev0
 casuarius==1.1
 catalyst==1.0.2
 certifi==2018.1.18
