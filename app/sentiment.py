@@ -4,7 +4,7 @@
 import csv
 import json
 import re
-import numpy as np
+#import numpy as np
 from textblob import TextBlob
 from textblob import Blobber
 tb = Blobber()
@@ -34,11 +34,13 @@ def overall_sentiments_list(reviews):
 
 def overall_sentiments_ave(reviews):
 	overall_sentiments=overall_sentiments_list(reviews)
-	return round(np.mean(np.array(overall_sentiments), dtype=np.float64),3)
+	return 4
+	#return round(np.mean(np.array(overall_sentiments), dtype=np.float64),3)
 
 def overall_sentiments_std(reviews):
 	overall_sentiments=overall_sentiments_list(reviews)
-	return round(np.std(np.array(overall_sentiments), dtype=np.float64),3)
+	return 4
+	#return round(np.std(np.array(overall_sentiments), dtype=np.float64),3)
 ##########
 
 ##### CATEGORY SENTIMENTS #####
@@ -54,16 +56,16 @@ def category_sentiments_list(reviews):
 
 def category_sentiments_ave(reviews):
 	category_sentiments=category_sentiments_list(reviews)
-	category_ave=[]
-	for i, category in enumerate(categories):
-		category_ave.append(round(np.mean(np.array([cat[i] for cat in category_sentiments if cat[i] !='N/A']), dtype=np.float64),3))
+	category_ave=[3,3,3,3]
+	#for i, category in enumerate(categories):
+		#category_ave.append(round(np.mean(np.array([cat[i] for cat in category_sentiments if cat[i] !='N/A']), dtype=np.float64),3))
 	return category_ave
 
 def category_sentiments_std(reviews):
 	category_sentiments=category_sentiments_list(reviews)
-	category_std=[]
-	for i, category in enumerate(categories):
-		category_std.append(round(np.std(np.array([cat[i] for cat in category_sentiments if cat[i] !='N/A']), dtype=np.float64),3))
+	category_std=[3,3,3,3]
+	#for i, category in enumerate(categories):
+		#category_std.append(round(np.std(np.array([cat[i] for cat in category_sentiments if cat[i] !='N/A']), dtype=np.float64),3))
 	return category_std
 ##########
 
@@ -92,9 +94,10 @@ def categories_sentiments(dictionaries, sentiments, words):
 		# return average value of sentence sentiments if sentiment values exist
 		if temp_sent:
 			# my_sentiments_ave.append(round(sum(temp_sent)/len(temp_sent),2))
-			my_sentiments_ave.append(round(np.mean(np.array(temp_sent), dtype=np.float64),3))
-			my_sentiments_std.append(round(np.std(np.array(temp_sent), dtype=np.float64),3))
-
+			#my_sentiments_ave.append(round(np.mean(np.array(temp_sent), dtype=np.float64),3))
+			#my_sentiments_std.append(round(np.std(np.array(temp_sent), dtype=np.float64),3))
+			my_sentiments_ave.append(round(float(sum(temp_sent))/len(temp_sent),2))
+			my_sentiments_std.append(0)
 		# if not applicable, return N/A indicating there were no sentences containing words of category, therefore nothing to analyze.
 		else:
 			my_sentiments_ave.append('N/A')
