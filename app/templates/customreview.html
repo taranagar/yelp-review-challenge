@@ -3,14 +3,19 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  <div class="jumbotron text-center">
+  <div class="jumbotron text-center" style="height: 30vh; margin-bottom: 0px; background:linear-gradient(0deg,rgba(0,0,0,0.2),rgba(0,0,0,0.4)),url(https://images.unsplash.com/photo-1449339854873-750e6913301b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f341a241a41d6794969e15dd5c7a6903&auto=format&fit=crop&w=2550&q=80); background-size: cover; color: white">
     <h1>Custom Review</h1>
-    <p class="lead">yah</p>
+    <p class="lead">Enter your own review here to see how our algorithm performs sentiment analysis</p>
   </div>
   <div class="container">
+     <div class="row">
+        <h2></h2>
+        <p>    </p>
+         
+      </div>
     <form>
       <div class="form-group">
-        <label for="exampleFormControlTextarea1">Enter Custom Review</label>
+        <label for="exampleFormControlTextarea1">Enter your review here</label>
         <textarea class="form-control" id="input-review" rows="8" placeholder="This place is so cute and has the best burritos ever... 10/10 would recommend!"></textarea>
       </div>
       <div class = "text-center">
@@ -20,4 +25,5 @@
       </div>
     </form>
   </div>
+}
 {% endblock %}
