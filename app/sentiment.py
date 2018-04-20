@@ -7,6 +7,7 @@ import re
 #import numpy as np
 from textblob import TextBlob
 from textblob import Blobber
+import nltk
 tb = Blobber()
 
 nltk.data.path.append('./nltk_data/')
