@@ -1,1 +1,2 @@
 python-2.7.14
+python -m textblob.download_corpora
