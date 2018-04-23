@@ -1,6 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from data import Businesses, Reviews
-from sentiment import overall_sentiments_list, overall_sentiments_ave, overall_sentiments_std, category_sentiments_list, category_sentiments_ave, category_sentiments_std
+from sentiment import overall_sentiments_list, overall_sentiments_ave, overall_sentiments_std, category_sentiments_list, category_sentiments_ave, category_sentiments_std, cs_single, os_single
 app = Flask(__name__)
 
 Businesses = Businesses()
@@ -10,9 +10,15 @@ Reviews = Reviews()
 def home_index():
     return render_template('home.html', businesses = Businesses)
 
-@app.route("/customreview")
-def customreview_index():
-    return render_template('customreview.html')
+@app.route('/customreview/', methods=["GET","POST"])
+def analyze_review():
+    category_scores=[]
+    reviewstring=''
+    if request.method=="POST":
+        reviewstring = request.form['review']
+    category_scores = cs_single(reviewstring)
+    overall_score = os_single(reviewstring)
+    return render_template('customreview.html', rstring=reviewstring, catscores=category_scores, ovscore=overall_score)
 
 @app.route("/accuracy")
 def accuracy_index():

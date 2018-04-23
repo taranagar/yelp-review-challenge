@@ -1,29 +1,35 @@
 <!-- NEED TO DO BACKEND FOR THIS... amongst many others -->
-
 {% extends 'layout.html' %}
 
 {% block body %}
-  <div class="jumbotron text-center" style="display: flex; align-items: center; justify-content: center; height: 30vh; margin-bottom: 0px; background:linear-gradient(0deg,rgba(0,0,0,0.2),rgba(0,0,0,0.4)),url(https://images.unsplash.com/photo-1449339854873-750e6913301b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f341a241a41d6794969e15dd5c7a6903&auto=format&fit=crop&w=2550&q=80); background-size: cover; color: white">
-    <div class = "container">
-      <h1 class ="display-4">Custom Review</h1>
-      <small><a style="color:LIGHTYELLOW;" href="https://unsplash.com/photos/hrlvr2ZlUNk">Photo</a> by Rachel Park</small>
-    </div>
-  </div>
-  <br />
-  <br />
-  <br />
-  <div class="container">
-    <form>
-      <div class="form-group">
-        <label class = "lead">Enter your own review here to see how our algorithm performs sentiment analysis.</label>
-        <textarea class="form-control" id="input-review" rows="8" placeholder="This place is so cute and has the best burritos ever... 10/10 would recommend!"></textarea>
-      </div>
-      <div class = "text-center">
-        <button type="submit" class="btn btn-lg btn-danger">
-          Analyze
-        </button>
-      </div>
+<div class="jumbotron text-center" style="height: 30vh; margin-bottom: 0px; background:linear-gradient(0deg,rgba(0,0,0,0.2),rgba(0,0,0,0.4)),url(https://images.unsplash.com/photo-1449339854873-750e6913301b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f341a241a41d6794969e15dd5c7a6903&auto=format&fit=crop&w=2550&q=80); background-size: cover; color: white">
+  <h1 class ="display-4">Custom Review</h1>
+  <p class="lead">Enter your own review here to see how our algorithm performs sentiment analysis</p>
+</div>
+<br />
+<br />
+<br />
+<div class="container text-center">
+  <div class="form-group">
+    <form action="" class="form" method="post">
+      <textarea class="form-control" name="review" rows=5 cols=70 placeholder="This place is so cute and has the best burritos ever... 10/10 would recommend!"></textarea>
+      <br />
+      <input class="btn btn-lg btn-danger" type="submit" value="Analyze">
     </form>
   </div>
-}
+</div>
+<div class="container">
+  <h5>Input Text</h5>
+  <div class="list-group-item list-group-item-action d-flex w-100 justify-content-between">
+    <small>{{rstring}}</small>
+  </div>
+  <h5>OVERALL RATING</h5>
+  <div class="list-group-item list-group-item-action d-flex w-100 justify-content-between">
+    <small>{{ovscore}}</small>
+  </div>
+  <h5>CATEGORY RATINGS: Ratings using our NLP for 4 categories specific to restaraunts...['Food', 'Ambiance', 'Price', 'Service']</h5>
+  <div class="list-group-item list-group-item-action d-flex w-100 justify-content-between">
+    <small>{{catscores}}</small>
+  </div>
+</div>
 {% endblock %}

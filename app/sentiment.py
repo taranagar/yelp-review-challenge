@@ -4,7 +4,7 @@
 import csv
 import json
 import re
-#import numpy as np
+import numpy as np
 from textblob import TextBlob
 from textblob import Blobber
 import nltk
@@ -24,6 +24,22 @@ for i, file in enumerate(['dict/food.csv', 'dict/ambiance.csv', 'dict/price.csv'
 		dictionaries.append([row[0] for row in rows])
 ##########
 
+##### USER REVIEWS SENTIMENTS #####
+def os_single(review):
+	if(review==''):
+		return 'N/A'
+	review_str = review.encode('ascii', 'ignore')
+	return sentiment_value_to_star(tb(review_str).polarity,0)
+
+def cs_single(review):
+	category_sentiments=[]
+	review_str=review.encode('ascii', 'ignore')
+	words = [sentence.words.lower().lemmatize() for sentence in tb(review_str).sentences]
+	sentence_sentiments = [sentence.sentiment.polarity for sentence in tb(review_str).sentences]
+	category_sentiments.append(categories_sentiments(dictionaries, sentence_sentiments, words))
+	return category_sentiments
+##########
+
 ##### OVERALL SENTIMENTS #####
 def overall_sentiments_list(reviews):
 	overall_sentiments=[]
@@ -37,13 +53,13 @@ def overall_sentiments_list(reviews):
 
 def overall_sentiments_ave(reviews):
 	overall_sentiments=overall_sentiments_list(reviews)
-	return 4
-	#return round(np.mean(np.array(overall_sentiments), dtype=np.float64),3)
+	#return 4
+	return round(np.mean(np.array(overall_sentiments), dtype=np.float64),3)
 
 def overall_sentiments_std(reviews):
 	overall_sentiments=overall_sentiments_list(reviews)
-	return 4
-	#return round(np.std(np.array(overall_sentiments), dtype=np.float64),3)
+	#return 4
+	return round(np.std(np.array(overall_sentiments), dtype=np.float64),3)
 ##########
 
 ##### CATEGORY SENTIMENTS #####
@@ -59,16 +75,16 @@ def category_sentiments_list(reviews):
 
 def category_sentiments_ave(reviews):
 	category_sentiments=category_sentiments_list(reviews)
-	category_ave=[3,3,3,3]
-	#for i, category in enumerate(categories):
-		#category_ave.append(round(np.mean(np.array([cat[i] for cat in category_sentiments if cat[i] !='N/A']), dtype=np.float64),3))
+	category_ave=[]
+	for i, category in enumerate(categories):
+		category_ave.append(round(np.mean(np.array([cat[i] for cat in category_sentiments if cat[i] !='N/A']), dtype=np.float64),3))
 	return category_ave
 
 def category_sentiments_std(reviews):
 	category_sentiments=category_sentiments_list(reviews)
-	category_std=[3,3,3,3]
-	#for i, category in enumerate(categories):
-		#category_std.append(round(np.std(np.array([cat[i] for cat in category_sentiments if cat[i] !='N/A']), dtype=np.float64),3))
+	category_std=[]
+	for i, category in enumerate(categories):
+		category_std.append(round(np.std(np.array([cat[i] for cat in category_sentiments if cat[i] !='N/A']), dtype=np.float64),3))
 	return category_std
 ##########
 
@@ -85,13 +101,14 @@ def categories_sentiments(dictionaries, sentiments, words):
 		temp_sent = []
 		for k,sent in enumerate(sentiments):
 			if(set(words[k]) & set(dictionaries[j])):
-				if (sent < 0):
-					sent = sent*3
+				#if (sent < 0):
+				#	sent = sent*3
 				temp_sent.append(sent)
 		# return average value of sentence sentiments if sentiment values exist
 		temp_sent = filter(lambda a: a != 0.0, temp_sent)
+		temp_sent = [a for a in temp_sent if abs(a)>0.05]
 		# remove very neutral values (-0.05, 0.05)
-		temp_sent = filter(lambda a: abs(a > 0.05), temp_sent)
+		#temp_sent = filter(lambda a: abs(a > 0.05), temp_sent)
 		#print "Filtered",categories[j],"Sentiment Values", temp_sent
 
 		# return average value of sentence sentiments if sentiment values exist
