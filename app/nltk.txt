@@ -1,1 +1,4 @@
 wordnet
+brown
+punkt
+movie_reviews
