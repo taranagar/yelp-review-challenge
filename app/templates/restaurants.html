@@ -1,24 +1,43 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  <div class="jumbotron text-center" style="height: 30vh; margin-bottom: 0px; background:linear-gradient(0deg,rgba(0,0,0,0.2),rgba(0,0,0,0.4)),url(https://images.unsplash.com/photo-1516650688078-ed219a2c29ea?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=10719153149d758eb6abe772b5d6ac6d&auto=format&fit=crop&w=1350&q=80); background-size: cover; color: white">
-    <h1>Restaurants</h1>
+  <div class="jumbotron text-center" style="display: flex; align-items: center; justify-content: center; height: 40vh; margin-bottom: 0px; background:linear-gradient(0deg,rgba(0,0,0,0.2),rgba(0,0,0,0.4)),url(https://images.unsplash.com/photo-1516650688078-ed219a2c29ea?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=10719153149d758eb6abe772b5d6ac6d&auto=format&fit=crop&w=1350&q=80); background-size: cover; color: white">
+    <div>
+      <h1 class ="display-4">Restaurants</h1>
+      <small>Photo by <a style="color:LIGHTYELLOW;" href="https://unsplash.com/photos/hrlvr2ZlUNk">Rachel Park</a> on <a style="color:LIGHTYELLOW;" href="https://unsplash.com/">Unsplash</a></small>
+    </div>
   </div>
+  <br />
   <div class="container">
-    <ul class="list-group list-group-flush">
       {% for business in businesses %}
-        <a href="restaurants/{{business.business_id}}" class="list-group-item list-group-item-action align-items-start">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{business.name}}</h5>
-            <small>{{business.stars}}/5</small>
+        {% if loop.index0 %3 == 0 %}
+        <div class ="row">
+        {% endif %}
+          <div class = "container col-md-4">
+          <div class="card list-group-item-action">
+            <div class="card-body">
+              <a href="restaurants/{{business.business_id}}"><h5 class="card-title">{{business.name}}</h5></a>
+              <p class="card-text">{{business.address}}</p>
+              <small>{{business.review_count}} Reviews </small>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><small>Overall 4.4/5</small></li>
+              <div class="container row">
+                <li class="list-group-item col-md-6"><small>Food 4.4/5</small></li>
+                <li class="list-group-item col-md-6"><small>Ambiance 4.4/5</small></li>
+              </div>
+              <div class="container row">
+                <li class="list-group-item col-md-6"><small>Price 4.4/5</small></li>
+                <li class="list-group-item col-md-6"><small>Service 4.4/5</small></li>
+              </div>
+            </ul>
           </div>
-          <div class="d-flex w-100 justify-content-between">
-            <p class="mb-1">{{business.address}}</p>
-            <small>{{business.review_count}} Reviews</small>
           </div>
-        </a>
-      </br>
+          <br />
+        {% if loop.index0 %3 == 2 %}
+        </div>
+        <br>
+        {% endif %}
       {% endfor %}
-    </ul>
   </div>
 {% endblock %}

@@ -1,89 +1,181 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  <div class="container-full-bg jumbotron text-center">
-    <hr />
-      <h1 class="mb-1">{{business.name}}</h1>
-      <h4 class="mb-1">{{business.address}}</h4>
-      <h5>{{business.stars}}/5</h5>
-      <h5>{{business.review_count}} Reviews</h5>
-    </div>
-    <hr />
-  </div>
-  <div class = "container list-group list-group-flush">
-    <h5>Business JSON:</h5>
-    <div class="list-group-item list-group-item-action d-flex w-100 justify-content-between">
-      <small>{{business}}</small>
-    </div>
-  </div>
-  <br />
-  <div class = "container list-group list-group-flush">
-    <h5>First 3 Review JSONS:</h5>
-    <!--GET ALL REVIEWS WITH {{reviews}}-->
-    {% for review in reviews %}
-    <div class="list-group-item list-group-item-action d-flex w-100 justify-content-between">
-      <small>{{review}}</small>
-    </div>
-    {% endfor %}
-  </div>
-  <br />
+<div class="jumbotron text-center" style="height: 30vh; margin-bottom: 0px; background:linear-gradient(0deg,rgba(0,0,0,0.2),rgba(0,0,0,0.4)),url(https://images.unsplash.com/photo-1508501184302-bcac77f780c8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=13a907cbb9d5c0240f2c79f9daee234a&auto=format&fit=crop&w=1655&q=80); background-size: cover; color: white">    
+  <h1>{{business.name}}</h1>
+    <h5>{{business.address}}, {{business.city}}, {{business.state}}, {{business.postal_code}}</h5>
+    <h5>{{business.stars}}/5 stars</h5>
+    <h5>{{business.review_count}} Reviews</h5>
+</div>
+  
+<div class="large-2 columns">&nbsp;</div>
 
-  <div class = "container list-group list-group-flush">
-    <h5>Overall Star Rating (Average):</h5>
-    <!--GET ALL REVIEWS WITH {{reviews}}-->
-    <div class="list-group-item list-group-item-action d-flex w-100 justify-content-between">
-      <small>{{overall_ave}}</small>
-    </div>
-  </div>
-  <br />
+<!-- <div class = "container list-group list-group-flush"> -->
+  <!-- <h2 class="text-center"><span class="label label-danger">About {{business.name}}</span></h2> -->
+    <!-- <div class="list-group-item list-group-item-action d-flex w-100 justify-content-between"> -->
+      <!-- <small>{{business}}</small> -->
+  <!-- <h5 class="text-center">Address:{{business.address}}, {{business.city}}, {{business.state}}, {{business.postal_code}} </h5>
+  <h5 class="text-center">Number of Yelp Reviews: {{business.review_count}} </h5> -->
+    <!-- </div> -->
+<!-- </div> -->
 
-  <div class ="container text-center">
-    <h4>OVERALL RATINGS: Overall Star Ratings using our NLP</h4>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="text-center">Yelp View</h2>
+    </div>
+
+    <div class="col-md-6">
+      <h2 class="text-center">MYelp View</h2>
+    </div>
   </div>
 
-  <div class = "container list-group list-group-flush">
-    <h5>Overall Star Rating (Standard Deviation):</h5>
-    <!--GET ALL REVIEWS WITH {{reviews}}-->
-    <div class="list-group-item list-group-item-action d-flex w-100 justify-content-between">
-      <small>{{overall_std}}</small>
-    </div>
-  </div>
-  <br />
-  <div class = "container list-group list-group-flush">
-    <h5>Overall Star Rating (List, All {{business.review_count}} Reviews):</h5>
-    <!--GET ALL REVIEWS WITH {{reviews}}-->
-    <div class="list-group-item list-group-item-action d-flex w-100 justify-content-between">
-      <small>{{overall_list}}</small>
-    </div>
-  </div>
-  <br />
+  <hr>
 
-  <div class ="container text-center">
-    <h4>CATEGORY RATINGS: Ratings using our NLP for 4 categories specific to restaraunts... but yelp doesn't specify in their review ratings for these specific categories ['Food', 'Ambiance', 'Price', 'Service']</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <h5 class="text-center">Stars: {{business.stars}}</h5> 
+    </div>
+
+    <div class="col-md-6">
+      <h5 class="text-center">Overall Rating (Average): {{overall_ave}} stars</h5> 
+      <h5 class="text-center">Standard Deviation: {{overall_std}}</h5> 
+    </div>
+  </div> 
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Sample Review 1:</h5> {{reviews[0].text}}
+    </div>
+
+    <div class="col-md-6">
+      <h5 class="text-center">MYelp Overall Rating(Review 1): {{overall_list[0]}} stars</h5> 
+    </div>
+  </div> 
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Sample Review 2:</h5> {{reviews[1].text}}
+    </div>
+
+    <div class="col-md-6">
+      <h5 class="text-center">MYelp Overall Rating (Review 2): {{overall_list[1]}} stars</h5>
+    </div>
+  </div> 
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Sample Review 3:</h5> {{reviews[2].text}}
+    </div>
+
+    <div class="col-md-6">
+      <h5 class="text-center"> MYelpOverall Rating (Review 3): {{overall_list[2]}} stars</h5>
+    </div>
+  </div> 
+
+  <hr>
+</div>
+
+<div class="large-2 columns">&nbsp;</div>
+
+<div class="container text-center" style="height: 20vh; margin-bottom: 0px; background:linear-gradient(0deg,rgba(0,0,0,0.2),rgba(0,0,0,0.4)),url(https://images.unsplash.com/photo-1504283708523-52171518259f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9f0c96eda316c8a6110c93ee9397ad22&auto=format&fit=crop&w=2549&q=80); background-size: cover; color: white ">
+
+  <div class="large-2 columns">&nbsp;</div>
+  <div class="large-2 columns">&nbsp;</div>
+  <h1>The "MYelp" Difference</h1>
+
+</div>
+
+  <div class="large-2 columns">&nbsp;</div>
+
+<div class="container">
+   <h4 class="text-center">Our algorithm does not just provide overall star ratings like Yelp does - it uses NLP to generate specific ratings for categories that are important to users - Food, Ambiance, Price, and Service. MYelp does this by generating category ratings for each individual review based on a sentiment analysis algorithm, and then averaging these values. Here are MYelp's cateogry ratings for the 3 sample reviews displayed above: </h4>
+
+   <div class="large-2 columns">&nbsp;</div>
+
+   <div class="row">
+    <div class="col-md-6">
+      <h5>Sample Review 1:</h5> {{reviews[0].text}}
+    </div>
+
+    <div class="col-md-6">
+      <h5 class="text-center">Food Rating: {{category_list[0][0]}} </h5> 
+      <h5 class="text-center">Ambiance Rating: {{category_list[0][1]}} </h5> 
+      <h5 class="text-center">Price Rating: {{category_list[0][2]}} </h5> 
+      <h5 class="text-center">Service Rating: {{category_list[0][3]}} </h5> 
+    </div>
+  </div> 
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Sample Review 2:</h5> {{reviews[1].text}}
+    </div>
+
+    <div class="col-md-6">
+      <h5 class="text-center">Food Rating: {{category_list[1][0]}} </h5> 
+      <h5 class="text-center">Ambiance Rating: {{category_list[1][1]}} </h5> 
+      <h5 class="text-center">Price Rating: {{category_list[1][2]}} </h5> 
+      <h5 class="text-center">Service Rating: {{category_list[1][3]}} </h5> 
+    </div>
+  </div> 
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Sample Review 3:</h5> {{reviews[2].text}}
+    </div>
+
+    <div class="col-md-6">
+      <h5 class="text-center">Food Rating: {{category_list[2][0]}} </h5> 
+      <h5 class="text-center">Ambiance Rating: {{category_list[2][1]}} </h5> 
+      <h5 class="text-center">Price Rating: {{category_list[2][2]}} </h5> 
+      <h5 class="text-center">Service Rating: {{category_list[2][3]}} </h5> 
+    </div>
+  </div> 
+
+  <hr>
+
+  <h4 class="text-center">Here are MYelp's Overall Category Ratings for {{business.name}}, calculated by averaging the above values for each of the {{business.review_count}} existing reviews:</h4>
+
+   <div class="large-2 columns">&nbsp;</div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <h2 class="text-center">Food</h2>
+      <h6 class="text-center">Category Rating: {{category_ave[0]}} stars</h6>
+      <h6 class="text-center">Standard Deviation: {{category_std[0]}}</h6>
+    </div>
+
+    <div class="col-md-3">
+      <h2 class="text-center">Ambiance</h2>
+      <h6 class="text-center">Category Rating: {{category_ave[1]}} stars</h6>
+      <h6 class="text-center">Standard Deviation: {{category_std[1]}}</h6>
+    </div>
+
+    <div class="col-md-3">
+      <h2 class="text-center">Price</h2>
+      <h6 class="text-center">Category Rating: {{category_ave[2]}} stars</h6>
+      <h6 class="text-center">Standard Deviation: {{category_std[2]}}</h6>
+    </div>
+
+    <div class="col-md-3">
+      <h2 class="text-center">Service</h2>
+      <h6 class="text-center">Category Rating: {{category_ave[3]}} stars</h6>
+      <h6 class="text-center">Standard Deviation: {{category_std[3]}}</h6>
+    </div>
   </div>
 
-  <div class = "container list-group list-group-flush">
-    <h5>Category Star Ratings (Average):</h5>
-    <!--GET ALL REVIEWS WITH {{reviews}}-->
-    <div class="list-group-item list-group-item-action d-flex w-100 justify-content-between">
-      <small>{{category_ave}}</small>
-    </div>
-  </div>
-  <br />
-  <div class = "container list-group list-group-flush">
-    <h5>Category Star Ratings (Standard Deviation):</h5>
-    <!--GET ALL REVIEWS WITH {{reviews}}-->
-    <div class="list-group-item list-group-item-action d-flex w-100 justify-content-between">
-      <small>{{category_std}}</small>
-    </div>
-  </div>
-  <br />
-  <div class = "container list-group list-group-flush">
-    <h5>Category Star Rating (List, All {{business.review_count}} Reviews):</h5>
-    <!--GET ALL REVIEWS WITH {{reviews}}-->
-    <div class="list-group-item list-group-item-action d-flex w-100 justify-content-between">
-      <small>{{category_list}}</small>
-    </div>
-  </div>
-  <br />
+</div>
+
+
+<div class="large-2 columns">&nbsp;</div>
 {% endblock %}
