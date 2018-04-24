@@ -32,6 +32,19 @@
                 {% endif %}
               </div>
             </div>
+            <div class="row">
+              <div class="col-md-3">
+                Yelp
+              </div>
+              <div class="col-md-9">
+                {%for i in range((business.stars-0.5)|round|int)%}
+                  <i class="fas fa-star" style="color:BLACK; border-width: 1px;"></i>
+                {% endfor %}
+                {%if (business.stars|round|int) > business.stars%}
+                  <i class="fas fa-star-half" aria-hidden="true" style="color:BLACK; border-radius: 1px;"></i>
+                {% endif %}
+              </div>
+            </div>
             <hr>
             <div class="row">
               <div class="col-md-3">
