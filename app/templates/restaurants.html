@@ -24,10 +24,10 @@
                 Overall
               </div>
               <div class="col-md-9">
-                {%for i in range((business.stars-0.5)|round|int)%}
+                {%for i in range((ovscores[loop.index0]-0.5)|round|int)%}
                   <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
                 {% endfor %}
-                {%if (business.stars|round|int) > business.stars%}
+                {%if (ovscores[loop.index0]|round|int) > ovscores[loop.index0]%}
                   <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
                 {% endif %}
               </div>
@@ -39,10 +39,10 @@
               </div>
               <div class="col-md-3">
                 <small>
-                  {%for i in range((business.stars-0.5)|round|int)%}
+                  {%for i in range((catscores[loop.index0][0]-0.5)|round|int)%}
                     <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
                   {% endfor %}
-                  {%if (business.stars|round|int) > business.stars%}
+                  {%if ((catscores[loop.index0][0]|round|int) > catscores[loop.index0])[0]%}
                     <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
                   {% endif %}
                 </small>
@@ -52,10 +52,10 @@
               </div>
               <div class="col-md-3" style="align-self:flex-end;">
                 <small>
-                  {%for i in range((business.stars-0.5)|round|int)%}
+                  {%for i in range((catscores[loop.index0][1]-0.5)|round|int)%}
                     <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
                   {% endfor %}
-                  {%if (business.stars|round|int) > business.stars%}
+                  {%if ((catscores[loop.index0][1]|round|int) > catscores[loop.index0][1])%}
                     <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
                   {% endif %}
                 </small>
@@ -67,10 +67,10 @@
                 </div>
                 <div class="col-md-3">
                   <small>
-                    {%for i in range((business.stars-0.5)|round|int)%}
+                    {%for i in range((catscores[loop.index0][2]-0.5)|round|int)%}
                       <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
                     {% endfor %}
-                    {%if (business.stars|round|int) > business.stars%}
+                    {%if ((catscores[loop.index0][2]|round|int) > catscores[loop.index0][2])%}
                       <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
                     {% endif %}
                   </small>
@@ -80,10 +80,10 @@
                 </div>
                 <div class="col-md-3">
                   <small>
-                    {%for i in range((business.stars-0.5)|round|int)%}
+                    {%for i in range((catscores[loop.index0][3]-0.5)|round|int)%}
                       <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
                     {% endfor %}
-                    {%if (business.stars|round|int) > business.stars%}
+                    {%if ((catscores[loop.index0][3]|round|int) > catscores[loop.index0][3])%}
                       <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
                     {% endif %}
                   </small>
