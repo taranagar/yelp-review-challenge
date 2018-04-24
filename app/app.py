@@ -8,7 +8,7 @@ Reviews = Reviews()
 
 @app.route("/")
 def home_index():
-    return render_template('home.html', businesses = Businesses)
+    return render_template('home.html')
 
 @app.route('/customreview/', methods=["GET","POST"])
 def analyze_review():

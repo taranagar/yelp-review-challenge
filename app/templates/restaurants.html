@@ -10,33 +10,93 @@
   <br />
   <div class="container">
       {% for business in businesses %}
-        {% if loop.index0 %3 == 0 %}
-        <div class ="row">
+        {% if loop.index0 %2 == 0 %}
+        <div class ="card-deck" style="margin-top:30px;">
         {% endif %}
-          <div class = "container col-md-4">
-          <div class="card list-group-item-action">
+          <div class="card col-md-6">
+            <small class="card-header">{{business.categories[0]}}, {{business.categories[1]}}</small>
             <div class="card-body">
-              <a href="restaurants/{{business.business_id}}"><h5 class="card-title">{{business.name}}</h5></a>
+              <a href="restaurants/{{business.business_id}}"><h5 class="card-title" style="color:#d9534f">{{business.name}}</h5></a>
               <p class="card-text">{{business.address}}</p>
+              <!--<p class="card-text">Rating (TOREMOVE) {{business.stars}}</p>-->
+            <hr>
+            <div class="row">
+              <div class="col-md-2">
+                Overall
+              </div>
+              <div class="col-md-10">
+                {%for i in range((business.stars-0.5)|round|int)%}
+                  <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
+                {% endfor %}
+                {%if (business.stars|round|int) > business.stars%}
+                  <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+                {% endif %}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-2">
+                <small>Food</small>
+              </div>
+              <div class="col-md-4">
+                <small>
+                  {%for i in range((business.stars-0.5)|round|int)%}
+                    <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
+                  {% endfor %}
+                  {%if (business.stars|round|int) > business.stars%}
+                    <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+                  {% endif %}
+                </small>
+              </div>
+              <div class="col-md-2">
+                <small style="letter-spacing: -0.8px;">Ambiance</small>
+              </div>
+              <div class="col-md-4" style="align-self:flex-end;">
+                <small>
+                  {%for i in range((business.stars-0.5)|round|int)%}
+                    <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
+                  {% endfor %}
+                  {%if (business.stars|round|int) > business.stars%}
+                    <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+                  {% endif %}
+                </small>
+              </div>
+            </div>
+              <div class="row">
+                <div class="col-md-2">
+                  <small>Price</small>
+                </div>
+                <div class="col-md-4">
+                  <small>
+                    {%for i in range((business.stars-0.5)|round|int)%}
+                      <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
+                    {% endfor %}
+                    {%if (business.stars|round|int) > business.stars%}
+                      <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+                    {% endif %}
+                  </small>
+                </div>
+                <div class="col-md-2">
+                  <small>Service</small>
+                </div>
+                <div class="col-md-4">
+                  <small>
+                    {%for i in range((business.stars-0.5)|round|int)%}
+                      <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
+                    {% endfor %}
+                    {%if (business.stars|round|int) > business.stars%}
+                      <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+                    {% endif %}
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
               <small>{{business.review_count}} Reviews </small>
             </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><small>Overall 4.4/5</small></li>
-              <div class="container row">
-                <li class="list-group-item col-md-6"><small>Food 4.4/5</small></li>
-                <li class="list-group-item col-md-6"><small>Ambiance 4.4/5</small></li>
-              </div>
-              <div class="container row">
-                <li class="list-group-item col-md-6"><small>Price 4.4/5</small></li>
-                <li class="list-group-item col-md-6"><small>Service 4.4/5</small></li>
-              </div>
-            </ul>
           </div>
-          </div>
-          <br />
-        {% if loop.index0 %3 == 2 %}
+        {% if loop.index0 %2 == 1 %}
         </div>
-        <br>
         {% endif %}
       {% endfor %}
   </div>
