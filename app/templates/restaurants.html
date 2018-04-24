@@ -14,17 +14,16 @@
         <div class ="card-deck" style="margin-top:30px;">
         {% endif %}
           <div class="card col-md-6">
-            <small class="card-header">{{business.categories[0]}}, {{business.categories[1]}}</small>
             <div class="card-body">
               <a href="restaurants/{{business.business_id}}"><h5 class="card-title" style="color:#d9534f">{{business.name}}</h5></a>
               <p class="card-text">{{business.address}}</p>
               <!--<p class="card-text">Rating (TOREMOVE) {{business.stars}}</p>-->
             <hr>
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-md-3">
                 Overall
               </div>
-              <div class="col-md-10">
+              <div class="col-md-9">
                 {%for i in range((business.stars-0.5)|round|int)%}
                   <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
                 {% endfor %}
@@ -35,10 +34,10 @@
             </div>
             <hr>
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <small>Food</small>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <small>
                   {%for i in range((business.stars-0.5)|round|int)%}
                     <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
@@ -48,10 +47,10 @@
                   {% endif %}
                 </small>
               </div>
-              <div class="col-md-2">
-                <small style="letter-spacing: -0.8px;">Ambiance</small>
+              <div class="col-md-3">
+                <small>Ambiance</small>
               </div>
-              <div class="col-md-4" style="align-self:flex-end;">
+              <div class="col-md-3" style="align-self:flex-end;">
                 <small>
                   {%for i in range((business.stars-0.5)|round|int)%}
                     <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
@@ -63,10 +62,10 @@
               </div>
             </div>
               <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <small>Price</small>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <small>
                     {%for i in range((business.stars-0.5)|round|int)%}
                       <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
@@ -76,10 +75,10 @@
                     {% endif %}
                   </small>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <small>Service</small>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <small>
                     {%for i in range((business.stars-0.5)|round|int)%}
                       <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
