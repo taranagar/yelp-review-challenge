@@ -26,7 +26,14 @@ def accuracy_index():
 
 @app.route('/restaurants')
 def restaurants_index():
-    return render_template('restaurants.html', businesses = Businesses)
+    category_scores_all = []
+    overall_scores=[]
+    for b in [b for i, b in enumerate(Businesses)]:
+        reviews = [r for j, r in enumerate(Reviews) if b["business_id"]== r["business_id"]]
+        category_scores_all.append(category_sentiments_ave(reviews))
+        overall_scores.append(overall_sentiments_ave(reviews))
+    #print category_scores_all
+    return render_template('restaurants.html', businesses = Businesses, catscores = category_scores_all, ovscores = overall_scores)
 
 @app.route('/restaurants/<biz_id>')
 def restaurant_index(biz_id):
