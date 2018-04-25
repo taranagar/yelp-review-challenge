@@ -1,0 +1,27 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[dev-packages]
+
+
+
+[packages]
+
+flask = "==0.12.2"
+flask-bootstrap = "==3.3.7.1"
+gunicorn = "==19.7.1"
+itsdangerous = "==0.24"
+"jinja2" = "==2.8"
+nltk = "==3.2.5"
+numpy = "==1.10.4"
+textblob = "==0.15.1"
+werkzeug = "==0.14.1"
+
+
+[requires]
+
+python_version = "2.7"

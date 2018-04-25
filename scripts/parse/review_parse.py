@@ -7,7 +7,7 @@ data = []
 ids = []
 
 # open review.json file to read from
-with open('../../data/business_ids3.json', 'r') as dataf:
+with open('../../data/business_ids4.json', 'r') as dataf:
     for line in dataf:
         ids.append(json.loads(line))
 ids = ids[0]
@@ -30,6 +30,6 @@ rf.close()
 print "# Reviews:", len(data)
 
 # open reviews.json file to write to
-with open('../../data/review/reviews3.json', 'w') as wf:
+with open('../../data/review/reviews4.json', 'w') as wf:
     json.dump(data, wf)
 wf.close()

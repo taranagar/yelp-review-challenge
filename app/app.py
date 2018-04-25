@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from data import Businesses, Reviews
 from sentiment import overall_sentiments_list, overall_sentiments_ave, overall_sentiments_std, category_sentiments_list, category_sentiments_ave, category_sentiments_std, cs_single, os_single
+
 app = Flask(__name__)
 
 Businesses = Businesses()
