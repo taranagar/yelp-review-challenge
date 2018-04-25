@@ -5,7 +5,6 @@
   <div class="container">
     <h1 class="display-4">{{business.name}}</h1>
     <h5 class ="lead">{{business.address}}, {{business.city}}, {{business.state}}, {{business.postal_code}}</h5>
-    <h5 class ="lead">{{business.stars}}/5 stars</h5>
     <h5 class ="lead">{{business.review_count}} Reviews</h5>
   </div>
 </div>
@@ -21,150 +20,135 @@
     <!-- </div> -->
 <!-- </div> -->
 
-<div class="container">
-<div class="card-deck">
+<div class="container" style="margin-top:30px;margin-bottom:30px;">
+  <div class="card-deck">
     <div class="card col-md-6 text-center">
       <div class="card-body">
-        <div class="row">
-          <h2 class="lead">MYelp Overall Rating</h2>
+          <h4>MYelp Overall</h4>
+          <h5>
+            {%for i in range((overall_ave-0.5)|round|int)%}
+              <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
+            {% endfor %}
+            {%if (overall_ave|round|int) > overall_ave%}
+              <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+            {% endif %}
+          </h5>
         </div>
-        <div class="row">
-          <h2 class="lead">{{overall_ave}}</h2>
-        </div>
-      </div>
     </div>
 
-  <div class="card col-md-6 text-center">
-    <div class="card-body">
-      <div class="row">
-        <h2 class="lead">MYelp Overall Rating</h2>
-      </div>
-      <div class="row">
-        <h2 class="lead">{{overall_ave}}</h2>
-      </div>
+    <div class="card col-md-6 text-center">
+      <div class="card-body">
+          <h4>Yelp Overall</h4>
+          <h5>
+            {%for i in range((business.stars-0.5)|round|int)%}
+              <i class="fas fa-star" style="color:BLACK; border-width: 1px;"></i>
+            {% endfor %}
+            {%if (business.stars|round|int) > business.stars%}
+              <i class="fas fa-star-half" aria-hidden="true" style="color:BLACK; border-radius: 1px;"></i>
+            {% endif %}
+          </h5>
+        </div>
+    </div>
+  </div>
+  <br />
+  <div class="card-deck">
+    <div class="card col-md-4 text-center">
+      <div class="card-body">
+          <h5>Food</h5>
+          <p>
+            {%for i in range((category_ave[0]-0.5)|round|int)%}
+              <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
+            {% endfor %}
+            {%if (category_ave[0]|round|int) > category_ave[0]%}
+              <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+            {% endif %}
+          </p>
+        </div>
+    </div>
+
+    <div class="card col-md-4 text-center">
+      <div class="card-body">
+          <h5>Ambiance</h5>
+          <p>
+            {%for i in range((category_ave[1]-0.5)|round|int)%}
+              <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
+            {% endfor %}
+            {%if (category_ave[1]|round|int) > category_ave[1]%}
+              <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+            {% endif %}
+          </p>
+        </div>
+    </div>
+
+    <div class="card col-md-4 text-center">
+      <div class="card-body">
+          <h5>Price</h5>
+          <p>
+            {%for i in range((category_ave[2]-0.5)|round|int)%}
+              <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
+            {% endfor %}
+            {%if (category_ave[2]|round|int) > category_ave[2]%}
+              <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+            {% endif %}
+          </p>
+        </div>
+    </div>
+
+    <div class="card col-md-4 text-center">
+      <div class="card-body">
+          <h5>Service</h5>
+          <p>
+            {%for i in range((category_ave[3]-0.5)|round|int)%}
+              <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
+            {% endfor %}
+            {%if (category_ave[3]|round|int) > category_ave[3]%}
+              <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+            {% endif %}
+          </p>
+        </div>
     </div>
   </div>
 </div>
-</div>
 
-  <hr>
-
-  <div class="row">
-    <div class="col-md-6">
-      <h5 class="text-center">Stars: {{business.stars}}</h5>
-    </div>
-
-    <div class="col-md-6">
-      <h5 class="text-center">Overall Rating (Average): {{overall_ave}} stars</h5>
-      <h5 class="text-center">Standard Deviation: {{overall_std}}</h5>
-    </div>
-  </div>
-
-  <hr>
+  <br />
 
   <div class="container">
-
-    <div class="row">
-      <div class="col-md-3">
-        <h2 class="text-center">Food</h2>
-        <h6 class="text-center">Category Rating: {{category_ave[0]}} stars</h6>
-        <h6 class="text-center">Standard Deviation: {{category_std[0]}}</h6>
+    <h4> Sample Reviews </h4>
+    {% for i in range(5) %}
+    <hr>
+      <div class="row">
+        <div class="col-md-8">
+          <p>{{reviews[i].text}}</p>
+        </div>
+        <div class="col-md-4">
+          <h5 class="text-center">
+            Food
+            {%for i in range((category_list[i][0]-0.5)|round|int)%}
+              <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
+            {% endfor %}
+            {%if (category_list[i][0]|round|int) > category_list[i][0]%}
+              <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+            {% endif %}
+          </h5>
+          <h5 class="text-center">Ambiance {{category_list[1][1]}} </h5>
+          <h5 class="text-center">Price {{category_list[1][2]}} </h5>
+          <h5 class="text-center">Service {{category_list[1][3]}} </h5>
+        </div>
       </div>
-
-      <div class="col-md-3">
-        <h2 class="text-center">Ambiance</h2>
-        <h6 class="text-center">Category Rating: {{category_ave[1]}} stars</h6>
-        <h6 class="text-center">Standard Deviation: {{category_std[1]}}</h6>
-      </div>
-
-      <div class="col-md-3">
-        <h2 class="text-center">Price</h2>
-        <h6 class="text-center">Category Rating: {{category_ave[2]}} stars</h6>
-        <h6 class="text-center">Standard Deviation: {{category_std[2]}}</h6>
-      </div>
-
-      <div class="col-md-3">
-        <h2 class="text-center">Service</h2>
-        <h6 class="text-center">Category Rating: {{category_ave[3]}} stars</h6>
-        <h6 class="text-center">Standard Deviation: {{category_std[3]}}</h6>
-      </div>
-    </div>
-
-    <div class="large-2 columns">&nbsp;</div>
-
-    <h4 class="text-center">Our algorithm does not just provide overall star ratings like Yelp does - it uses NLP to generate specific ratings for categories that are important to users - Food, Ambiance, Price, and Service. MYelp does this by generating category ratings for each individual review based on a sentiment analysis algorithm, and then averaging these values. Above, you can see MYelp's Overall Category Ratings for 3 out of {{business.review_count}} existing reviews for {{business.name}}. Here are MYelp's overall cateogry ratings for {{business.name}}, which are calculated by averaging the above values for each of the {{business.review_count}} existing reviews: </h4>
-
-  </div>
-
-  <div class="container text-center" style="height: 20vh; margin-bottom: 0px; background:linear-gradient(0deg,rgba(0,0,0,0.2),rgba(0,0,0,0.4)),url(https://images.unsplash.com/photo-1504283708523-52171518259f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9f0c96eda316c8a6110c93ee9397ad22&auto=format&fit=crop&w=2549&q=80); background-size: cover; color: white ">
-
-    <div class="large-2 columns">&nbsp;</div>
-    <div class="large-2 columns">&nbsp;</div>
-    <h1>The "MYelp" Difference</h1>
-
-  </div>
-
-    <div class="large-2 columns">&nbsp;</div>
-
-  <hr />
-
-  <div class="row">
-    <div class="col-md-6">
-      <h5>Sample Review 1:</h5> {{reviews[0].text}}
-    </div>
-
-    <div class="col-md-6">
-      <h5 class="text-center">MYelp Overall Rating(Review 1): {{overall_list[0]}} stars</h5>
-      <div class="large-2 columns">&nbsp;</div>
-      <h6 class="text-center">Food Rating: {{category_list[0][0]}} </h6>
-      <h6 class="text-center">Ambiance Rating: {{category_list[0][1]}} </h6>
-      <h6 class="text-center">Price Rating: {{category_list[0][2]}} </h6>
-      <h6 class="text-center">Service Rating: {{category_list[0][3]}} </h6>
-    </div>
-  </div>
-
-<!--   <hr> -->
-  <hr>
-
-  <div class="row">
-    <div class="col-md-6">
-      <h5>Sample Review 2:</h5> {{reviews[1].text}}
-    </div>
-
-    <div class="col-md-6">
-      <h5 class="text-center">MYelp Overall Rating (Review 2): {{overall_list[1]}} stars</h5>
-      <div class="large-2 columns">&nbsp;</div>
-      <h6 class="text-center">Food Rating: {{category_list[1][0]}} </h6>
-      <h6 class="text-center">Ambiance Rating: {{category_list[1][1]}} </h6>
-      <h6 class="text-center">Price Rating: {{category_list[1][2]}} </h6>
-      <h6 class="text-center">Service Rating: {{category_list[1][3]}} </h6>
-    </div>
-  </div>
+    {% endfor %}
 
   <hr>
 
-  <div class="row">
-    <div class="col-md-6">
-      <h5>Sample Review 3:</h5> {{reviews[2].text}}
-    </div>
 
-    <div class="col-md-6">
-      <h5 class="text-center"> MYelpOverall Rating (Review 3): {{overall_list[2]}} stars</h5>
-      <div class="large-2 columns">&nbsp;</div>
-      <h6 class="text-center">Food Rating: {{category_list[2][0]}} </h6>
-      <h6 class="text-center">Ambiance Rating: {{category_list[2][1]}} </h6>
-      <h6 class="text-center">Price Rating: {{category_list[2][2]}} </h6>
-      <h6 class="text-center">Service Rating: {{category_list[2][3]}} </h6>
-    </div>
-  </div>
+<div class="large-2 columns">&nbsp;</div>
 
-  <hr>
+<div class="jumbatron text-center" style="height: 20vh; margin-bottom: 0px; background:linear-gradient(0deg,rgba(0,0,0,0.2),rgba(0,0,0,0.4)),url(https://images.unsplash.com/photo-1504283708523-52171518259f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9f0c96eda316c8a6110c93ee9397ad22&auto=format&fit=crop&w=2549&q=80); background-size: cover; color: white ">
+  <h1>The "MYelp" Difference</h1>
+
 </div>
-
-<div class="large-2 columns">&nbsp;</div>
-
-
+<h4 class="text-center">Our algorithm does not just provide overall star ratings like Yelp does - it uses NLP to generate specific ratings for categories that are important to users - Food, Ambiance, Price, and Service. MYelp does this by generating category ratings for each individual review based on a sentiment analysis algorithm, and then averaging these values. Above, you can see MYelp's Overall Category Ratings for 3 out of {{business.review_count}} existing reviews for {{business.name}}. Here are MYelp's overall cateogry ratings for {{business.name}}, which are calculated by averaging the above values for each of the {{business.review_count}} existing reviews: </h4>
 
 
 <div class="large-2 columns">&nbsp;</div>
+</div>
 {% endblock %}
