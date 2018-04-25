@@ -6,6 +6,7 @@
     <h1 class="display-4">{{business.name}}</h1>
     <h5 class ="lead">{{business.address}}</h5>
     <h5 class ="lead">{{business.review_count}} Reviews</h5>
+    <small>Photo by <a style="color:LIGHTYELLOW;" href="https://unsplash.com/photos/gmo6Ok9G0U8">adils photography</a> on <a style="color:LIGHTYELLOW;" href="https://unsplash.com/">Unsplash</a></small>
   </div>
 </div>
 
@@ -199,14 +200,18 @@
 <br />
 <br />
 
-<div class="jumbatron text-center" style="display: flex; align-items: center; justify-content: center;height: 30vh; margin-bottom: 0px; background:linear-gradient(0deg,rgba(0,0,0,0.2),rgba(0,0,0,0.4)),url(https://images.unsplash.com/photo-1504283708523-52171518259f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9f0c96eda316c8a6110c93ee9397ad22&auto=format&fit=crop&w=2549&q=80); background-size: cover; color: white ">
-  <h1 class="display-4">The "MYelp" Difference</h1>
+<div class="jumbotron text-center" style="display: flex; align-items: center; justify-content: center;height: 30vh; margin-bottom: 0px; background:linear-gradient(0deg,rgba(0,0,0,0.2),rgba(0,0,0,0.4)),url(https://images.unsplash.com/photo-1504283708523-52171518259f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9f0c96eda316c8a6110c93ee9397ad22&auto=format&fit=crop&w=2549&q=80); background-size: cover; color: white ">
+  <div class="container">
+    <h1 class="display-4">The "MYelp" Difference</h1>
+    <small>Photo by <a style="color:LIGHTYELLOW;" href="https://unsplash.com/photos/OnAwTs0tu3k">Natalie Rhea Riggs</a> on <a style="color:LIGHTYELLOW;" href="https://unsplash.com/">Unsplash</a></small>
+  </div>
 </div>
 
 <br />
 
 <div class = "container">
   <p class="lead">Our algorithm does not just provide overall star ratings like Yelp does - it uses NLP to generate specific ratings for categories that are important to users - Food, Ambiance, Price, and Service. MYelp does this by generating category ratings for each individual review based on a sentiment analysis algorithm, and then averaging these values. Above, you can see MYelp's Overall Ratings for 5 out of {{business.review_count}} existing reviews for {{business.name}}. You can also see MYelp's overall cateogry ratings for {{business.name}}, which are calculated by averaging the above values for each of the {{business.review_count}} existing reviews. With all calculated average scores there are also standard deviation values as stated below. </p>
+  <div class="large-2 columns">&nbsp;</div>
   <ul class="list-group">
     <li class="list-group-item">MYelp Overall Rating Standard Deviation: {{overall_std}} </li>
     <li class="list-group-item">Food Category Rating Standard Deviation: {{category_std[0]}} </li>
@@ -214,5 +219,8 @@
     <li class="list-group-item">Price Category Rating Standard Deviation: {{category_std[2]}} </li>
     <li class="list-group-item">Service Category Rating Standard Deviation: {{category_std[3]}} </li>
   </ul>
+
+  <div class="large-2 columns">&nbsp;</div>
+  <div class="large-2 columns">&nbsp;</div>
 </div>
 {% endblock %}
