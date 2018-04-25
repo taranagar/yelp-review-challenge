@@ -124,7 +124,6 @@
         </div>
         <div class="col-md-3">
           <h6>
-            Overall
             {%if overall_list[i] is number%}
               {%for i in range((overall_list[i]-0.5)|round|int)%}
                 <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
@@ -135,6 +134,17 @@
             {% endif %}
           </h6>
           <h6>
+            {%if reviews[i].stars is number%}
+              {%for i in range((reviews[i].stars-0.5)|round|int)%}
+                <i class="fas fa-star" style="color:BLACK; border-width: 1px;"></i>
+              {% endfor %}
+              {%if (reviews[i].stars|round|int) > reviews[i].stars%}
+                <i class="fas fa-star-half" aria-hidden="true" style="color:BLACK; border-radius: 1px;"></i>
+              {% endif %}
+            {% endif %}
+          </h6>
+          <hr />
+          <small>
             <i class="icon ion-android-restaurant"></i>
             {%if category_list[i][0] is number%}
               {%for i in range((category_list[i][0]-0.5)|round|int)%}
@@ -144,8 +154,9 @@
                 <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
               {% endif %}
             {% endif %}
-          </h6>
-          <h6>
+          </small>
+          <br />
+          <small>
             <i class="icon ion-ios-flower-outline"></i>
             {%if category_list[i][1] is number%}
               {%for i in range((category_list[i][1]-0.5)|round|int)%}
@@ -155,8 +166,9 @@
                 <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
               {% endif %}
             {% endif %}
-          </h6>
-          <h6>
+          </small>
+          <br />
+          <small>
             <i class="icon ion-social-usd"></i>
             {%if category_list[i][2] is number%}
               {%for i in range((category_list[i][2]-0.5)|round|int)%}
@@ -166,8 +178,9 @@
                 <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
               {% endif %}
             {% endif %}
-          </h6>
-          <h6>
+          </small>
+          <br />
+          <small>
             <i class="icon ion-bowtie"></i>
             {%if category_list[i][3] is number%}
               {%for i in range((category_list[i][3]-0.5)|round|int)%}
@@ -177,7 +190,7 @@
                 <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
               {% endif %}
             {% endif %}
-          </h6>
+          </small>
         </div>
       </div>
     {% endfor %}

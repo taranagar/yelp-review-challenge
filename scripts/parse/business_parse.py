@@ -25,6 +25,7 @@ print "# Businesses:", len(data1)
 
 # write ALL business information into businesses.json
 
+'''
 with open('../../data/business/businesses4.json', 'w') as wf1:
     json.dump(data1, wf1)
 wf1.close()
@@ -34,3 +35,4 @@ with open('../../data/business_ids4.json', 'w') as wf2:
     data2 = [entry['business_id'] for entry in data1]
     json.dump(data2, wf2)
 wf2.close()
+'''
