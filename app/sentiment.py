@@ -54,7 +54,7 @@ def overall_sentiments_list(reviews):
 def overall_sentiments_ave(reviews):
 	overall_sentiments=overall_sentiments_list(reviews)
 	#return 4
-	return round(np.mean(np.array(overall_sentiments), dtype=np.float64),3)
+	return round_average(np.mean(np.array(overall_sentiments), dtype=np.float64))
 
 def overall_sentiments_std(reviews):
 	overall_sentiments=overall_sentiments_list(reviews)
@@ -77,7 +77,7 @@ def category_sentiments_ave(reviews):
 	category_sentiments=category_sentiments_list(reviews)
 	category_ave=[]
 	for i, category in enumerate(categories):
-		category_ave.append(round(np.mean(np.array([cat[i] for cat in category_sentiments if cat[i] !='N/A']), dtype=np.float64),3))
+		category_ave.append(round_average(np.mean(np.array([cat[i] for cat in category_sentiments if cat[i] !='N/A']), dtype=np.float64)))
 	return category_ave
 
 def category_sentiments_std(reviews):
@@ -131,6 +131,10 @@ def categories_sentiments(dictionaries, sentiments, words):
 		#print "Sentiment (Stars):", sentiment_value_to_star(my_sentiments_ave[k], my_sentiments_std[k])
 		my_sentiment_stars.append(sentiment_value_to_star(my_sentiments_ave[k], my_sentiments_std[k]))
 	return my_sentiment_stars
+
+#round to nearest 0.5
+def round_average(average):
+	return round(average*2)/2
 
 # converts [-1, 1] sentiment values to [1, 5] star scale
 def sentiment_value_to_star(value_mean, value_std):
