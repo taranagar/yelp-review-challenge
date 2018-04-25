@@ -20,10 +20,10 @@
               <!--<p class="card-text">Rating (TOREMOVE) {{business.stars}}</p>-->
             <hr>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-2">
                 MYelp
               </div>
-              <div class="col-md-9">
+              <div class="col-md-10">
                 {%for i in range((ovscores[loop.index0]-0.5)|round|int)%}
                   <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
                 {% endfor %}
@@ -33,10 +33,10 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-2">
                 Yelp
               </div>
-              <div class="col-md-9">
+              <div class="col-md-10">
                 {%for i in range((business.stars-0.5)|round|int)%}
                   <i class="fas fa-star" style="color:BLACK; border-width: 1px;"></i>
                 {% endfor %}
@@ -47,10 +47,10 @@
             </div>
             <hr>
             <div class="row">
-              <div class="col-md-3">
-                <small>Food</small>
+              <div class="col-md-2">
+                <small><i class="icon ion-android-restaurant"></i></small>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <small>
                   {%for i in range((catscores[loop.index0][0]-0.5)|round|int)%}
                     <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
@@ -60,10 +60,10 @@
                   {% endif %}
                 </small>
               </div>
-              <div class="col-md-3">
-                <small>Ambiance</small>
+              <div class="col-md-2">
+                <small><i class="icon ion-ios-flower-outline"></i></small>
               </div>
-              <div class="col-md-3" style="align-self:flex-end;">
+              <div class="col-md-4">
                 <small>
                   {%for i in range((catscores[loop.index0][1]-0.5)|round|int)%}
                     <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
@@ -75,10 +75,10 @@
               </div>
             </div>
               <div class="row">
-                <div class="col-md-3">
-                  <small>Price</small>
+                <div class="col-md-2">
+                  <small><i class="icon ion-social-usd"></i></small>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <small>
                     {%for i in range((catscores[loop.index0][2]-0.5)|round|int)%}
                       <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
@@ -88,10 +88,10 @@
                     {% endif %}
                   </small>
                 </div>
-                <div class="col-md-3">
-                  <small>Service</small>
+                <div class="col-md-2">
+                  <small><i class="icon ion-bowtie"></i></small>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                   <small>
                     {%for i in range((catscores[loop.index0][3]-0.5)|round|int)%}
                       <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>

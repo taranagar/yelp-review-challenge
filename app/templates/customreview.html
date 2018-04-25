@@ -5,7 +5,7 @@
 <div class="jumbotron text-center" style="height: 40vh; margin-bottom: 0px; background:linear-gradient(0deg,rgba(0,0,0,0.2),rgba(0,0,0,0.4)),url(https://images.unsplash.com/photo-1484557594760-42c1ac0c092e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=007d4a76c7eebabb9275bcfb54ea7f67&auto=format&fit=crop&w=1599&q=80); background-size: cover; color: white">
 
   <h1 class ="display-4">Custom Review</h1>
-  <p class="lead">Enter your own review here to see how our algorithm performs sentiment analysis</p>
+  <p class="lead text-center">Enter your own review here to see how our algorithm performs sentiment analysis!</p>
   <small>Photo by <a style="color:LIGHTYELLOW;" href="https://unsplash.com/photos/C05KN4h8WKw">rawpixel.com</a> on <a style="color:LIGHTYELLOW;" href="https://unsplash.com/">Unsplash</a></small>
 </div>
 
@@ -14,124 +14,111 @@
 <br />
 
 <div class="container">
-  <h5>Enter your review:</h5>
-</div>
-<div class="container text-center">
-  <div class="form-group">
-    <form action="" class="form" method="post">
-      <textarea class="form-control" style="background:linear-gradient(0deg,rgba(255, 255, 255, 1),rgba(251, 241, 245, 1));" value="<?php echo htmlspecialchars($_GET['review']); ?>" name="review" rows=5 cols=70 placeholder="This place is so cute and has the best burritos ever... 10/10 would recommend!"></textarea>
-
-      <br />
-
-      <input class="btn btn-lg btn-danger" type="submit" value="Analyze">
-    </form>
-  </div>
-</div>
-
-<br />
-
-<div class="container text-center justify-content-md-center">
-  <!-- <div class="jumbotron"> -->
-  <div class="justify-content-md-center">
-    <div class="card col-md-6 justify-content-md-center">
-      <div class="card-body">
-        <h5 class="card-title" style="color:#d9534f">Custom Review</h5>
-      <hr>
-
-      <div class="row">
-        <div class="col-md-3">
-          Overall
-        </div>
-        <div class="col-md-9">
-          {%if ovscore is number%}
-            {% for i in range((ovscore-0.5)|round|int)%}
-              <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
-            {% endfor %}
-            {%if (ovscore|round|int) > ovscore%}
-              <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
-            {% endif %}
-          {% endif %}
-        </div>
+  <div class="row">
+    <div class="col-md-7 text-right">
+      <div class="form-group">
+        <form action="" class="form" method="post">
+          <textarea class="form-control" value="<?php echo htmlspecialchars($_GET['review']); ?>" name="review" rows=6 cols=70 placeholder="This place is so cute and has the best burritos ever... 10/10 would recommend!"></textarea>
+          <input class="btn btn-danger btn-block" type="submit" value="Analyze">
+        </form>
       </div>
+    </div>
 
-      <hr>
-
-      <div class="row">
-
-        <div class="col-md-3">
-          <small>Food</small>
-        </div>
-        <div class="col-md-3">
-          <small>
-            {%if catscores[0][0] is number%}
-              {%for i in range((catscores[0][0]-0.5)|round|int)%}
+    <div class="col-md-5">
+      <div class="card justify-content-md-center">
+        <div class="card-body">
+          <h5 class="card-title" style="color:#d9534f">Custom Review</h5>
+        <hr>
+        <div class="row">
+          <div class="col-md-2">
+            <small>Overall</small>
+          </div>
+          <div class="col-md-10">
+            {%if ovscore is number%}
+              {% for i in range((ovscore-0.5)|round|int)%}
                 <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
               {% endfor %}
-              {%if ((catscores[0][0]|round|int) > catscores[0][0])%}
+              {%if (ovscore|round|int) > ovscore%}
                 <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
               {% endif %}
             {% endif %}
-          </small>
+          </div>
         </div>
-
-        <div class="col-md-3">
-          <small>Ambiance</small>
-        </div>
-        <div class="col-md-3">
-          <small>
-            {%if catscores[0][1] is number%}
-              {%for i in range((catscores[0][1]-0.5)|round|int)%}
-                <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
-              {% endfor %}
-              {%if ((catscores[0][1]|round|int) > catscores[0][1])%}
-                <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+        <hr>
+        <div class="row">
+          <div class="col-md-2">
+            <small><i class="icon ion-android-restaurant"></i></small>
+          </div>
+          <div class="col-md-4">
+            <small>
+              {%if catscores[0][0] is number%}
+                {%for i in range((catscores[0][0]-0.5)|round|int)%}
+                  <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
+                {% endfor %}
+                {%if ((catscores[0][0]|round|int) > catscores[0][0])%}
+                  <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+                {% endif %}
               {% endif %}
-            {% endif %}
-          </small>
-        </div>
-
-        <div class="col-md-3">
-          <small>Price</small>
-        </div>
-        <div class="col-md-3">
-          <small>
-            {%if catscores[0][2] is number%}
-              {%for i in range((catscores[0][2]-0.5)|round|int)%}
-                <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
-              {% endfor %}
-              {%if ((catscores[0][2]|round|int) > catscores[0][2])%}
-                <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+            </small>
+          </div>
+          <div class="col-md-2">
+            <small><i class="icon ion-ios-flower-outline"></i></small>
+          </div>
+          <div class="col-md-4">
+            <small>
+              {%if catscores[0][1] is number%}
+                {%for i in range((catscores[0][1]-0.5)|round|int)%}
+                  <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
+                {% endfor %}
+                {%if ((catscores[0][1]|round|int) > catscores[0][1])%}
+                  <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+                {% endif %}
               {% endif %}
-            {% endif %}
-          </small>
-        </div>
-
-        <div class="col-md-3">
-          <small>Service</small>
-        </div>
-        <div class="col-md-3">
-          <small>
-            {%if catscores[0][3] is number %}
-              {%for i in range((catscores[0][3]-0.5)|round|int)%}
-                <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
-              {% endfor %}
-              {%if ((catscores[0][3]|round|int) > catscores[0][3])%}
-                <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+            </small>
+          </div>
+          <div class="col-md-2">
+            <small><i class="icon ion-social-usd"></i></small>
+          </div>
+          <div class="col-md-4">
+            <small>
+              {%if catscores[0][2] is number%}
+                {%for i in range((catscores[0][2]-0.5)|round|int)%}
+                  <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
+                {% endfor %}
+                {%if ((catscores[0][2]|round|int) > catscores[0][2])%}
+                  <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+                {% endif %}
               {% endif %}
-            {% endif %}
-          </small>
+            </small>
+          </div>
+          <div class="col-md-2">
+            <small><i class="icon ion-bowtie"></i></small>
+          </div>
+          <div class="col-md-4">
+            <small>
+              {%if catscores[0][3] is number %}
+                {%for i in range((catscores[0][3]-0.5)|round|int)%}
+                  <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
+                {% endfor %}
+                {%if ((catscores[0][3]|round|int) > catscores[0][3])%}
+                  <i class="fas fa-star-half" aria-hidden="true" style="color:CRIMSON; border-radius: 1px;"></i>
+                {% endif %}
+              {% endif %}
+            </small>
+          </div>
         </div>
-      </div>
-
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+<!--
 <div class="container">
   <h5>Input Text</h5>
   <div class="list-group-item list-group-item-action d-flex w-100 justify-content-between">
     <small>{{rstring}}</small>
   </div>
 </div>
+-->
 {% endblock %}

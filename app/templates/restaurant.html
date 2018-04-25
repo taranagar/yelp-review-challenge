@@ -54,7 +54,7 @@
   <div class="card-deck">
     <div class="card col-md-4 text-center">
       <div class="card-body">
-          <h5>Food</h5>
+          <h5>Food <i class="icon ion-android-restaurant"></i></h5>
           <p>
             {%for i in range((category_ave[0]-0.5)|round|int)%}
               <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
@@ -68,7 +68,7 @@
 
     <div class="card col-md-4 text-center">
       <div class="card-body">
-          <h5>Ambiance</h5>
+          <h5>Ambiance <i class="icon ion-ios-flower-outline"></i></h5>
           <p>
             {%for i in range((category_ave[1]-0.5)|round|int)%}
               <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
@@ -82,7 +82,7 @@
 
     <div class="card col-md-4 text-center">
       <div class="card-body">
-          <h5>Price</h5>
+          <h5>Price <i class="icon ion-social-usd"></i></h5>
           <p>
             {%for i in range((category_ave[2]-0.5)|round|int)%}
               <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
@@ -96,7 +96,7 @@
 
     <div class="card col-md-4 text-center">
       <div class="card-body">
-          <h5>Service</h5>
+          <h5>Service <i class="icon ion-bowtie"></i></h5>
           <p>
             {%for i in range((category_ave[3]-0.5)|round|int)%}
               <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
@@ -135,7 +135,7 @@
             {% endif %}
           </h6>
           <h6>
-            Food
+            <i class="icon ion-android-restaurant"></i>
             {%if category_list[i][0] is number%}
               {%for i in range((category_list[i][0]-0.5)|round|int)%}
                 <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
@@ -146,7 +146,7 @@
             {% endif %}
           </h6>
           <h6>
-            Ambiance
+            <i class="icon ion-ios-flower-outline"></i>
             {%if category_list[i][1] is number%}
               {%for i in range((category_list[i][1]-0.5)|round|int)%}
                 <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
@@ -157,7 +157,7 @@
             {% endif %}
           </h6>
           <h6>
-            Price
+            <i class="icon ion-social-usd"></i>
             {%if category_list[i][2] is number%}
               {%for i in range((category_list[i][2]-0.5)|round|int)%}
                 <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
@@ -168,7 +168,7 @@
             {% endif %}
           </h6>
           <h6>
-            Service
+            <i class="icon ion-bowtie"></i>
             {%if category_list[i][3] is number%}
               {%for i in range((category_list[i][3]-0.5)|round|int)%}
                 <i class="fas fa-star" style="color:CRIMSON; border-width: 1px;"></i>
@@ -194,6 +194,12 @@
 
 <div class = "container">
   <p class="lead">Our algorithm does not just provide overall star ratings like Yelp does - it uses NLP to generate specific ratings for categories that are important to users - Food, Ambiance, Price, and Service. MYelp does this by generating category ratings for each individual review based on a sentiment analysis algorithm, and then averaging these values. Above, you can see MYelp's Overall Ratings for 5 out of {{business.review_count}} existing reviews for {{business.name}}. You can also see MYelp's overall cateogry ratings for {{business.name}}, which are calculated by averaging the above values for each of the {{business.review_count}} existing reviews. With all calculated average scores there are also standard deviation values as stated below. </p>
-  <h5>{{category_std[0]}}, {{category_std[1]}}, {{category_std[2]}}, {{category_std[3]}}</h5>
+  <ul class="list-group">
+    <li class="list-group-item">MYelp Overall Rating Standard Deviation: {{overall_std}} </li>
+    <li class="list-group-item">Food Category Rating Standard Deviation: {{category_std[0]}} </li>
+    <li class="list-group-item">Ambiance Category Rating Standard Deviation: {{category_std[1]}} </li>
+    <li class="list-group-item">Price Category Rating Standard Deviation: {{category_std[2]}} </li>
+    <li class="list-group-item">Service Category Rating Standard Deviation: {{category_std[3]}} </li>
+  </ul>
 </div>
 {% endblock %}

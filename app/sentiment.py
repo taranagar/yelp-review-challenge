@@ -59,7 +59,7 @@ def overall_sentiments_ave(reviews):
 	overall_sentiments=category_sentiments_list(reviews)
 	overall_sentiments = [item for sublist in overall_sentiments for item in sublist]
 	overall_sentiments = filter(lambda a: a != "N/A", overall_sentiments)
-	print len(overall_sentiments)
+	#print len(overall_sentiments)
 	return sum(overall_sentiments, 0.0)/len(overall_sentiments)
 	#return round_average(np.mean(np.array(overall_sentiments), dtype=np.float64))
 
