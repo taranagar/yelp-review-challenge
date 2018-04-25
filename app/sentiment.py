@@ -29,7 +29,10 @@ def os_single(review):
 	if(review==''):
 		return 'N/A'
 	review_str = review.encode('ascii', 'ignore')
-	return sentiment_value_to_star(tb(review_str).polarity,0)
+	overall_sentiments=[]
+	overall_sentiment=cs_single(review_str)
+	overall_sentiment[0] = filter(lambda a: a != "N/A", overall_sentiment[0])
+	return round_average(sum(overall_sentiment[0], 0.0)/len(overall_sentiment[0]))
 
 def cs_single(review):
 	category_sentiments=[]
@@ -52,9 +55,12 @@ def overall_sentiments_list(reviews):
 	return overall_sentiments
 
 def overall_sentiments_ave(reviews):
-	overall_sentiments=overall_sentiments_list(reviews)
-	#return 4
-	return round_average(np.mean(np.array(overall_sentiments), dtype=np.float64))
+	overall_sentiments=category_sentiments_list(reviews)
+	overall_sentiments = [item for sublist in overall_sentiments for item in sublist]
+	overall_sentiments = filter(lambda a: a != "N/A", overall_sentiments)
+	print len(overall_sentiments)
+	return sum(overall_sentiments, 0.0)/len(overall_sentiments)
+	#return round_average(np.mean(np.array(overall_sentiments), dtype=np.float64))
 
 def overall_sentiments_std(reviews):
 	overall_sentiments=overall_sentiments_list(reviews)
@@ -77,14 +83,14 @@ def category_sentiments_ave(reviews):
 	category_sentiments=category_sentiments_list(reviews)
 	category_ave=[]
 	for i, category in enumerate(categories):
-		category_ave.append(round_average(np.mean(np.array([cat[i] for cat in category_sentiments if cat[i] !='N/A']), dtype=np.float64)))
+		category_ave.append(round_average(np.mean(np.array([cat[i] for cat in category_sentiments if cat[i] !="N/A"]), dtype=np.float64)))
 	return category_ave
 
 def category_sentiments_std(reviews):
 	category_sentiments=category_sentiments_list(reviews)
 	category_std=[]
 	for i, category in enumerate(categories):
-		category_std.append(round(np.std(np.array([cat[i] for cat in category_sentiments if cat[i] !='N/A']), dtype=np.float64),3))
+		category_std.append(round(np.std(np.array([cat[i] for cat in category_sentiments if cat[i] !="N/A"]), dtype=np.float64),3))
 	return category_std
 ##########
 
@@ -101,11 +107,11 @@ def categories_sentiments(dictionaries, sentiments, words):
 		temp_sent = []
 		for k,sent in enumerate(sentiments):
 			if(set(words[k]) & set(dictionaries[j])):
-				#if (sent < 0):
-				#	sent = sent*3
+				if (abs(sent) > 0.5):
+					sent = sent*2
 				temp_sent.append(sent)
 		# return average value of sentence sentiments if sentiment values exist
-		temp_sent = filter(lambda a: a != 0.0, temp_sent)
+		#temp_sent = filter(lambda a: a != 0.0, temp_sent)
 		temp_sent = [a for a in temp_sent if abs(a)>0.05]
 		# remove very neutral values (-0.05, 0.05)
 		#temp_sent = filter(lambda a: abs(a > 0.05), temp_sent)
@@ -120,8 +126,8 @@ def categories_sentiments(dictionaries, sentiments, words):
 			my_sentiments_std.append(0)
 		# if not applicable, return N/A indicating there were no sentences containing words of category, therefore nothing to analyze.
 		else:
-			my_sentiments_ave.append('N/A')
-			my_sentiments_std.append('N/A')
+			my_sentiments_ave.append("N/A")
+			my_sentiments_std.append("N/A")
 	# loop though sentiments of all categories
 
 	for k, sent in enumerate(my_sentiments_ave):
@@ -139,27 +145,27 @@ def round_average(average):
 # converts [-1, 1] sentiment values to [1, 5] star scale
 def sentiment_value_to_star(value_mean, value_std):
 	# no mean
-	if value_mean == 'N/A':
+	if value_mean == "N/A":
 		return "N/A"
 	# TO DO: DETERMINE STANDARD DEVIATION CUTOFF
 	# standard deviation too large, we can't determine a star
 	elif value_std > 0.5:
-		return "Can't Be Determined"
-	elif value_mean > 0.6:
+		return "N/A"
+	elif value_mean > 0.5:
 		return 5
-	elif value_mean >0.45:
+	elif value_mean >0.4:
 		return 4.5
 	elif value_mean > 0.3:
 		return 4
-	elif value_mean > 0.15:
+	elif value_mean > 0.2:
 		return 3.5
-	elif value_mean > 0.0:
+	elif value_mean > 0.1:
 		return 3
-	elif value_mean > -0.15:
+	elif value_mean > 0:
 		return 2.5
-	elif value_mean > -0.3:
+	elif value_mean > -0.1:
 		return 2
-	elif value_mean > -0.45:
+	elif value_mean > -0.2:
 		return 1.5
 	else:
 		return 1
