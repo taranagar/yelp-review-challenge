@@ -26,13 +26,14 @@ for i, file in enumerate(['dict/food.csv', 'dict/ambiance.csv', 'dict/price.csv'
 
 ##### USER REVIEWS SENTIMENTS #####
 def os_single(review):
-	if(review==''):
-		return 'N/A'
 	review_str = review.encode('ascii', 'ignore')
 	overall_sentiments=[]
 	overall_sentiment=cs_single(review_str)
 	overall_sentiment[0] = filter(lambda a: a != "N/A", overall_sentiment[0])
-	return round_average(sum(overall_sentiment[0], 0.0)/len(overall_sentiment[0]))
+	if (len(overall_sentiment[0]) != 0):
+		return float(round_average(sum(overall_sentiment[0], 0.0)/len(overall_sentiment[0])))
+	else:
+		return 'N/A'
 
 def cs_single(review):
 	category_sentiments=[]
