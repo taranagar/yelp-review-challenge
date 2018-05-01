@@ -15,7 +15,7 @@ with open('../../../yelp-data/business.json', 'r') as rf:
         ## city = Las Vegas
         ## 10 <= review_count <= 20
         ## categories != Fast Food
-        if 'GoodForMeal' in line_json['attributes'] and line_json['is_open'] == 1 and line_json['city'] == 'Las Vegas' and line_json['review_count'] >=15 and line_json['review_count'] <=25 and "Restaurants" in line_json['categories'] and "Fast Food" not in line_json['categories']:
+        if 'GoodForMeal' in line_json['attributes'] and line_json['is_open'] == 1 and line_json['city'] == 'Las Vegas' and line_json['review_count'] >=10 and line_json['review_count'] <=20 and "Restaurants" in line_json['categories'] and "Fast Food" not in line_json['categories']:
             if line_json['attributes']['GoodForMeal']['dinner'] == True:
                 data1.append(json.loads(line))
 rf.close()
@@ -24,7 +24,7 @@ rf.close()
 print "# Businesses:", len(data1)
 
 # write ALL business information into businesses.json
-
+'''
 with open('../../data/business/businesses0.json', 'w') as wf1:
     json.dump(data1, wf1)
 wf1.close()
@@ -34,3 +34,4 @@ with open('../../data/business_ids0.json', 'w') as wf2:
     data2 = [entry['business_id'] for entry in data1]
     json.dump(data2, wf2)
 wf2.close()
+'''

@@ -28,8 +28,9 @@ rf.close()
 
 # Number of Reviews:
 print "# Reviews:", len(data)
-
+'''
 # open reviews.json file to write to
 with open('../../data/review/reviews0.json', 'w') as wf:
     json.dump(data, wf)
 wf.close()
+'''
